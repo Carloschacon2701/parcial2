@@ -118,8 +118,18 @@ void mostrarPila(const Pila &pila)
     std::cout << std::endl;
 }
 
-int invertirCedula(int cedula){
+int invertirCedula(int cedula)
+{
+    int remainder, reversed_number = 0;
 
+    while (cedula != 0)
+    {
+        remainder = cedula % 10;
+        reversed_number = reversed_number * 10 + remainder;
+        cedula /= 10;
+    }
+
+    return reversed_number;
 };
 
 int generarCodigo(int cedula, Cola &cola, Pila &pila)
@@ -131,8 +141,9 @@ int generarCodigo(int cedula, Cola &cola, Pila &pila)
     {
         if (nodoActual->codigo == codigo)
         {
-            int penultimosTres = cedula % 1000000;
-            int antePenultimos = cedula % 1000000000;
+
+            int penultimosTres = codigo % 1000000; // Obtiene los tres penúltimos dígitos
+            int antePenultimos = codigo % 1000000000;
 
             if (penultimosTres != codigo)
             {
@@ -147,8 +158,8 @@ int generarCodigo(int cedula, Cola &cola, Pila &pila)
                 codigo = invertirCedula(cedula);
 
                 int ultimosTres = codigo % 1000;
-                int penUltimos = codigo % 1000000;
-                int antePenultimos = codigo % 1000000000;
+                int penUltimos = (codigo % 1000000) / 1000; // Obtiene los tres penúltimos dígitos
+                int antePenultimos = (codigo % 1000000000) / 1000000;
 
                 if (ultimosTres != codigo)
                 {
@@ -173,20 +184,6 @@ int generarCodigo(int cedula, Cola &cola, Pila &pila)
     }
 
     return codigo;
-}
-
-int invertirCedula(int cedula)
-{
-    int numeroInvertido = 0;
-
-    while (cedula > 0)
-    {
-        int digito = cedula % 10;
-        numeroInvertido = numeroInvertido * 10 + digito;
-        cedula /= 10;
-    }
-
-    return numeroInvertido;
 }
 
 int main()
