@@ -71,10 +71,10 @@ void mostrarCola(const Cola &cola)
     Nodo *nodoActual = cola.frente;
     while (nodoActual != nullptr)
     {
-        std::cout << nodoActual->codigo << " ";
+        cout << nodoActual->codigo << " ";
         nodoActual = nodoActual->siguiente;
     }
-    std::cout << std::endl;
+    cout << endl;
 }
 
 Pila crearPila()
@@ -112,10 +112,10 @@ void mostrarPila(const Pila &pila)
     Nodo *nodoActual = pila.cima;
     while (nodoActual != nullptr)
     {
-        std::cout << nodoActual->codigo << " ";
+        cout << nodoActual->codigo << " ";
         nodoActual = nodoActual->siguiente;
     }
-    std::cout << std::endl;
+    cout << endl;
 }
 
 int invertirCedula(int cedula)
@@ -195,25 +195,26 @@ int main()
 
     do
     {
-        cout << "Seleccione una opción:\n";
+        cout << "Seleccione una opcion:\n";
         cout << "A: Ingresar cédula, generar código y agregar a la cola.\n";
         cout << "1: Llamar al siguiente de la cola en taquilla 1.\n";
         cout << "2: Llamar al siguiente de la cola en taquilla 2.\n";
         cout << "3: Llamar al siguiente de la cola en taquilla 3.\n";
-        cout << "F: Finalizar la ejecución del programa.\n";
+        cout << "F: Finalizar la ejecucion del programa.\n";
         cin >> opcion;
 
         switch (opcion)
         {
         case 'A':
+        case 'a':
         {
-            cout << "Ingrese la cédula del cliente: ";
+            cout << "Ingrese la cedula del cliente: ";
             cin >> cedula;
 
             int codigo = generarCodigo(cedula, cola, pila);
             encolar(cola, codigo);
 
-            cout << "Código generado: " << codigo << endl;
+            cout << "Codigo generado: " << codigo << endl;
         }
         break;
 
@@ -221,7 +222,7 @@ int main()
         {
             if (!estaVacia(cola))
             {
-                cout << "Atendiendo al cliente con código: " << cola.frente->codigo << " en taquilla 1." << endl;
+                cout << "Atendiendo al cliente con codigo: " << cola.frente->codigo << " en taquilla 1." << endl;
                 desencolar(cola);
             }
             else
@@ -235,7 +236,7 @@ int main()
         {
             if (!estaVacia(cola))
             {
-                cout << "Atendiendo al cliente con código: " << cola.frente->codigo << " en taquilla 2." << endl;
+                cout << "Atendiendo al cliente con codigo: " << cola.frente->codigo << " en taquilla 2." << endl;
                 desencolar(cola);
             }
             else
@@ -249,7 +250,7 @@ int main()
         {
             if (!estaVacia(cola))
             {
-                cout << "Atendiendo al cliente con código: " << cola.frente->codigo << " en taquilla 3." << endl;
+                cout << "Atendiendo al cliente con codigo: " << cola.frente->codigo << " en taquilla 3." << endl;
                 desencolar(cola);
             }
             else
@@ -260,6 +261,7 @@ int main()
         break;
 
         case 'F':
+        case 'f':
         {
             cout << "Finalizando el programa." << endl;
         }
@@ -267,11 +269,11 @@ int main()
 
         default:
         {
-            cout << "Opción inválida. Intente nuevamente." << endl;
+            cout << "Opcion invalida. Intente nuevamente." << endl;
         }
         }
 
-        cout << "Cola de números actualizada: ";
+        cout << "Cola de numeros actualizada: ";
         mostrarCola(cola);
 
     } while (opcion != 'F' && opcion != 'f');
